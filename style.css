@@ -1,0 +1,87 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+#chat-window {
+  position: relative;
+  bottom: 50;
+  right: 50;
+  
+  height: 500px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  margin: auto;
+  margin-top: 2rem;
+  letter-spacing: 0.5px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-window-header {
+  background-color: #008CBA;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#chat-history {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100% - 150px);
+}
+
+.user-message {
+  background-color: #f0f8ff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.gemini-message {
+  background-color: #ffffe0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+#message-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+#user-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#send-button {
+  background-color: #008CBA;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#send-button:hover {
+  background-color: #007bff;
+}

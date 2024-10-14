@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disability Support</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="chat-window">
+    <div id="chat-window-header">
+      Disability Support Chat
+    </div>
+    <div id="chat-history"></div>
+    <div id="message-box">
+      <input type="text" id="user-input" placeholder="How can I help?">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('send-button').addEventListener('click', async () => {
+      await handleUserInput();
+    });
+
+    document.getElementById('user-input').addEventListener('keypress', async (event) => {
+      if (event.key === 'Enter') {
+        await handleUserInput();
+      }
+    });
+
+    async function handleUserInput() {
+      const userInput = document.getElementById('user-input').value;
+
+      if (userInput.trim() !== "") {
+        document.getElementById('user-input').value = '';
+
+        // Append user message to chat history
+        const chatHistory = document.getElementById('chat-history');
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'user-message';
+        userMessageDiv.innerText = userInput;
+        chatHistory.appendChild(userMessageDiv);
+
+        // Fetch the response from the server
+        try {
+          const response = await fetch(`/api/chat?message=${encodeURIComponent(userInput)}`);
+          const data = await response.json();
+
+          const geminiMessageDiv = document.createElement('div');
+          geminiMessageDiv.className = 'gemini-message';
+          geminiMessageDiv.innerText = data.response;
+          chatHistory.appendChild(geminiMessageDiv);
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
