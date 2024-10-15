@@ -9,11 +9,11 @@ body {
   position: relative;
   bottom: 50;
   right: 50;
-  
+  max-width: 600px;
+  width: 90%;
   height: 500px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  width: 50%;
   margin: auto;
   margin-top: 2rem;
   letter-spacing: 0.5px;
@@ -84,4 +84,29 @@ body {
 
 #send-button:hover {
   background-color: #007bff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  #chat-window {
+    height: 80vh;
+    width: 100%;
+  }
+
+  #chat-window-header {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  #message-box {
+    padding: 5px;
+  }
+
+  #user-input {
+    padding: 8px;
+  }
+
+  #send-button {
+    padding: 8px 10px;
+  }
 }
