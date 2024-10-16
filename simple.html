@@ -5,6 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Disability Support</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #sample-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+    }
+
+    .prompt-button {
+      background-color: #008CBA;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex: 1;
+      max-width: calc(50% - 10px);
+    }
+
+    .prompt-button:hover {
+      background-color: #007bff;
+    }
+
+    @media (max-width: 600px) {
+      .prompt-button {
+        max-width: 100%;
+        padding: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="chat-window">
@@ -15,6 +48,12 @@
     <div id="message-box">
       <input type="text" id="user-input" placeholder="How can I help?">
       <button id="send-button">Send</button>
+    </div>
+    <div id="sample-prompts">
+      <button class="prompt-button" data-prompt="How do I say Hi to someone with a disability?">How do I say Hi to someone with a disability?</button>
+      <button class="prompt-button" data-prompt="Can you explain what reverse inclusion is?">Can you explain what reverse inclusion is?</button>
+      <button class="prompt-button" data-prompt="How can I use person first language?">How can I use person first language?</button>
+      <button class="prompt-button" data-prompt="Can someone who can't speak communicate?">Can someone who can't speak communicate?</button>
     </div>
   </div>
 
@@ -27,6 +66,13 @@
       if (event.key === 'Enter') {
         await handleUserInput();
       }
+    });
+
+    document.querySelectorAll('.prompt-button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('user-input').value = button.dataset.prompt;
+        handleUserInput();
+      });
     });
 
     async function handleUserInput() {
